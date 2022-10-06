@@ -114,21 +114,21 @@ control-plane
 !
 banner exec z
 
-This is an Ansible Lab 10 device.
+This is an Ansible Lab 09 device.
 
 
 
 z
 banner incoming z
 
-This is an Ansible Lab 10 device.
+This is an Ansible Lab 09 device.
 
 
 
 z
 banner login z
 
-This is an Ansible Lab 10 device.
+This is an Ansible Lab 09 device.
 
 
 
@@ -157,13 +157,6 @@ end
 ## Yellow Router
 
 ```
-  
-*Aug 17 06:47:37.796: %SYS-5-CONFIG_I: Configured from console by console
-  
-!
-! Last configuration change at 06:47:37 UTC Wed Aug 17 2022
-!
-version 15.6
 service timestamps debug datetime msec
 service timestamps log datetime msec
 no service password-encryption
@@ -275,21 +268,21 @@ control-plane
 !
 banner exec z
 
-This is an Ansible Lab 10 device.
+This is an Ansible Lab 09 device.
 
 
 
 z
 banner incoming z
 
-This is an Ansible Lab 10 device.
+This is an Ansible Lab 09 device.
 
 
 
 z
 banner login z
 
-This is an Ansible Lab 10 device.
+This is an Ansible Lab 09 device.
 
 
 
