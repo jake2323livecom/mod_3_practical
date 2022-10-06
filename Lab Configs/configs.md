@@ -773,21 +773,21 @@ control-plane
 !
 banner exec z
 
-This is a practical exam device.
+This is an Ansible Lab 11 device.
 
 
 
 z
 banner incoming z
 
-This is a practical exam device.
+This is an Ansible Lab 11 device.
 
 
 
 z
 banner login z
 
-This is a practical exam device.
+This is an Ansible Lab 11 device.
 
 
 
@@ -927,21 +927,21 @@ control-plane
 !
 banner exec z
 
-This is a practical exam device.
+This is an Ansible Lab 11 device.
 
 
 
 z
 banner incoming z
 
-This is a practical exam device.
+This is an Ansible Lab 11 device.
 
 
 
 z
 banner login z
 
-This is a practical exam device.
+This is an Ansible Lab 11 device.
 
 
 
@@ -1089,21 +1089,21 @@ control-plane
 !
 banner exec z
 
-This is a practical exam device.
+This is an Ansible Lab 11 device.
 
 
 
 z
 banner incoming z
 
-This is a practical exam device.
+This is an Ansible Lab 11 device.
 
 
 
 z
 banner login z
 
-This is a practical exam device.
+This is an Ansible Lab 11 device.
 
 
 
@@ -1250,21 +1250,21 @@ control-plane
 !
 banner exec z
 
-This is a practical exam device.
+This is an Ansible Lab 11 device.
 
 
 
 z
 banner incoming z
 
-This is a practical exam device.
+This is an Ansible Lab 11 device.
 
 
 
 z
 banner login z
 
-This is a practical exam device.
+This is an Ansible Lab 11 device.
 
 
 
