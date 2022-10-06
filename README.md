@@ -66,7 +66,7 @@ This script will execute an API call to the locally hosted Nautobot server.  The
 
 * Use the JSON data in the `devices_json` variable to build the hostvars portion of the inventory. The `hostvars` variable has already been created for you, and it includes the basic structure needed.  
 
-    ### You can use Thunder Client to execute this same API call and have a graphical view of the data before writing the Python code to use it.  Use this tool to your advantage.  If you do use Thunder Client, make your life even easier by opening the returned data in a JSON file.
+    ### If you'd like, you can test this API call in Thunderclient to make sure it works before attempting to run this script.
 
 You will be responsible for adding each device returned from the API call to the hostvars.
 
