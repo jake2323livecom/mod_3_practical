@@ -46,7 +46,7 @@ This script will execute an API call to the locally hosted Nautobot server.  The
 
 * The `DEVICES_API_URL` should be set to `'https://10.10.44.21/api/dcim/devices'`, which is the list view for all devices in the Nautobot server.
 
-* The `METHOD` variable should be set to the appropriate HTTP header that used when retrieving data only.
+* The `METHOD` variable should be set to the appropriate HTTP method that is used when retrieving data only.
 
 * The `HEADERS` variable should set three HTTP headers to the appropriate values for the Nautobot API:
 
