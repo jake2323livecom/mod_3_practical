@@ -312,6 +312,33 @@ interface Loopback70
 
 <br/>
 
+Just for your information, when all of these templates are rendered correctly, the resulting file would look like this:
+
+    ```
+    hostname PRACTICAL-RED-ROUTER
+    !
+    ip name-server 10.10.20.98
+    ip name-server 10.10.20.99
+    !
+    interface Loopback50
+    ip address 10.10.50.1 255.255.255.0
+    !
+    interface Loopback60
+    ip address 10.10.60.1 255.255.255.0
+    !
+    interface Loopback70
+    ip address 10.10.70.1 255.255.255.0
+    !
+    !
+    logging host 1.1.1.1
+    !
+    line vty 0 4
+    logging synchronous
+    transport input ssh
+    transport output ssh
+    login local
+    ```
+
 # Task 5 - Write the Playbook
 
 <br/>
@@ -338,7 +365,7 @@ The play should:
 
 ## Step 3 - Create a tasks list
 
-Give your play a list of tasks.  **Every task should be accomplished by the localhost, and the name of each task does not matter.**
+Give your play a list of tasks.
 
 This list should define the following 6 tasks in this order:
 
@@ -367,8 +394,36 @@ This list should define the following 6 tasks in this order:
 
 # Running the Playbook
 
-- Run the playbook
-    - Pass in an extra variable called syslog_server and set the value equal to 10.10.10.10
+* Run the playbook
+
+    * Pass in an extra variable called `syslog_server` and set the value equal to `10.10.10.10`
+
+    * If your playbook ran successfully, one of the example configs in the `configs` directory should look something like this:
+
+    ```
+    hostname PRACTICAL-RED-ROUTER
+    !
+    ip name-server 10.10.20.98
+    ip name-server 10.10.20.99
+    !
+    interface Loopback50
+    ip address 10.10.50.1 255.255.255.0
+    !
+    interface Loopback60
+    ip address 10.10.60.1 255.255.255.0
+    !
+    interface Loopback70
+    ip address 10.10.70.1 255.255.255.0
+    !
+    !
+    logging host 1.1.1.1
+    !
+    line vty 0 4
+    logging synchronous
+    transport input ssh
+    transport output ssh
+    login local
+    ```
 
 
 # Post-exam Steps
