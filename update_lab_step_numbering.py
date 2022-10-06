@@ -11,7 +11,6 @@ if __name__ == '__main__':
     EXCLUDED_FILES = []
 
     # Patterns for matching specific files and headings within those files
-    FILENAME_PATTERN = re.compile('^Lab_\d{1,2}')
     TASK_HEADING_PATTERN = re.compile('^# Task \d{1,3}')
     STEP_HEADING_PATTERN = re.compile('^## Step \d{1,2}')
 
@@ -19,7 +18,7 @@ if __name__ == '__main__':
     files = []
     for directory in TARGET_DIRS:
         for file_name in os.listdir(directory):
-            if file_name not in EXCLUDED_FILES and os.path.isfile(f'{directory}/{file_name}') and FILENAME_PATTERN.match(file_name):
+            if file_name not in EXCLUDED_FILES and os.path.isfile(f'{directory}/{file_name}') and file_name.endswith('.md'):
                 files.append(f'{directory}/{file_name}')
                 print(f'Matched file: {file_name}')
 

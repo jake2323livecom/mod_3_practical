@@ -28,7 +28,7 @@
 
 <br/>
 
-# Task 1 - Finish the `partial_inventory.py` dynamic inventory script
+# Task 2 - Finish the `partial_inventory.py` dynamic inventory script
 
 Each of the following steps will have you either complete a section or create code from scratch in the `partial_inventory.py` in the `ansible` directory.  Each of the following steps will correlate to an appropriately labeled comment within the script so that you will know what the directions are referencing.
 
@@ -197,13 +197,13 @@ At this point, you will need to make sure you script works as intended.
 
 <br/>
 
-## Step 9 - Make the script executable for all users
+## Step 10 - Make the script executable for all users
 
 In a Bash terminal, execute the command that will make the script executable by _all users_.
 
 <br/>
 
-# Task 2 - Create the group variables
+# Task 3 - Create the group variables
 
 <br/>
 
@@ -241,7 +241,7 @@ In the `all.json` file, define the `ansible_network_os`, `ansible_user`, and `an
 
 <br/>
 
-# Task 3 - Complete the Jinja Templates
+# Task 4 - Complete the Jinja Templates
 
 A `templates` directory has already been created for you within the `playbooks` directory.  There are a few partially completed Jinja templates that you will need to finish.
 
@@ -273,7 +273,7 @@ At the end of the `base.j2` template, there is an empty variable call: `logging 
 
 Fill in the empty variable call with a new variable name called `syslog_server`.  You will pass this variable as an extra variable later on when you run the playbook.
 
-## Step 3 - Write the template for the dns server configuration
+## Step 4 - Write the template for the dns server configuration
 
 For this step, you will have to write the `dns_servers.j2` template to generate the dns server configuration for each device.
 
@@ -288,7 +288,7 @@ ip name-server <ip_address>
 
 <br/>
 
-## Step 4 - Write the template for the loopback interfaces configuration
+## Step 5 - Write the template for the loopback interfaces configuration
 
 For this step, you will need to finish the `loopback_interfaces.j2` template to generate the configuration for all physical interfaces.
 
@@ -312,7 +312,7 @@ interface Loopback70
 
 <br/>
 
-# Task 4 - Write the Playbook
+# Task 5 - Write the Playbook
 
 <br/>
 
