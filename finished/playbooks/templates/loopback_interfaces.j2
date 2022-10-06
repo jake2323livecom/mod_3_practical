@@ -1,0 +1,6 @@
+{# STEP 4 - Loop through interfaces variable and configure each interface #}
+{% for interface in interfaces %}
+interface {{ interface.name }}
+  ip address {{ interface.address }} {{ interface.mask }}
+!
+{% endfor %}
