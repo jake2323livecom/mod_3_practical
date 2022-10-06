@@ -1,0 +1,15 @@
+hostname {{  }}
+!
+{# import your 'dns_servers.j2' template here #}
+!
+{# import your 'pysical_interfaces.j2' template here #}
+!
+{# import your 'management_interface.j2' template here #}
+!
+logging host {{  }}
+!
+line vty 0 4
+  logging synchronous
+  transport input ssh
+  transport output ssh
+  no login
