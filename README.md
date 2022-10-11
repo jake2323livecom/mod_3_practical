@@ -123,7 +123,7 @@ The problem is, each group has an empty `hosts` list.
 
 Each device returned in the API call should have either `RED` or `YELLOW` in its name, indicating its enclave.  You will use this fact to put each device into either the `red_devices` or `yellow_devices` groups.
 
-### Using a for-loop, loop through each device and add its hostname to the hosts list of either the `red_devices` or `yellow_devices` groups, depending on its name.
+* ### Using a for-loop, loop through each device and add its hostname to the hosts list of either the `red_devices` or `yellow_devices` groups, depending on its name.
 
 <br/>
 
