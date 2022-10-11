@@ -72,7 +72,7 @@ This script will execute an API call to the locally hosted Nautobot server.  The
     * `Content-Type`
     * `Authorization`
 
-* The `PARAMETERS` variable should set a single parameter called `site` equal to `orko_mod_3_practical`.
+* Define the `PARAMETERS` variable in such a way that only devices from the `orko_mod_3_practical` site in Nautobot are returned via the API call.
 
 ## Step 2 - Execute the API call
 
