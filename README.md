@@ -141,7 +141,7 @@ Every device hostname should have either `ROUTER` or `SWITCH` in it, which indic
 
 Now, you need to make the `red_devices`, `yellow_devices`, `routers`, and `switches` groups _children_ of the `all` group.
 
-### Use a NEW for-loop to add the `red_devices`, `yellow_devices`, `routers`, and `switches` groups names to the `groups['all']['children']` list.
+* ### Create a NEW for-loop that sets the `red_devices`, `yellow_devices`, `routers`, and `switches` groups as children of the `all` group.
 
 <br/>
 
