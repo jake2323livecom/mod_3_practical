@@ -34,7 +34,7 @@ Each of the following steps will have you either complete a section or create co
 
 <br/>
 
-## Step 1 - Build API call variables
+## Step 2 - Build API call variables
 
 This script will execute an API call to the locally hosted Nautobot server.  The API call was intended to _retrieve_ the information for all devices that belong to the site `orko_mod_3_practical`.  You will need to fix the API call variables.
 
@@ -74,7 +74,7 @@ This script will execute an API call to the locally hosted Nautobot server.  The
 
 * Define the `PARAMETERS` variable in such a way that only devices from the `orko_mod_3_practical` site in Nautobot are returned via the API call.
 
-## Step 2 - Execute the API call
+## Step 3 - Execute the API call
 
 * Below the constants referenced by the previous step, you should see a `devices` variable that is set to `None`.  Edit this line of code so that the `devices` variable is equal to the response of an API call that utilizes all of the constants you defined in the previous step.
 
@@ -84,7 +84,7 @@ This script will execute an API call to the locally hosted Nautobot server.  The
 
 <br/>
 
-## Step 3 - Add hosts to hostvars
+## Step 4 - Add hosts to hostvars
 
 You will be responsible for adding each device returned from the API call to the hostvars portion of the inventory.
 
@@ -103,11 +103,9 @@ You will have to use the JSON data contained in the `devices_json` variable to b
 
     You will have to set the value of these variables appropriately using the data returned from the API call.
 
-    Write this code just beneath the `hostvars` variable.
-
 <br/>
 
-## Step 4 - Group hosts based on enclave
+## Step 5 - Group hosts based on enclave
 
 On line X, a `groups` variable has already been defined for you with the appropriate starting structure.  The `groups` variable is a dictionary that has 5 groups defined already:
 
@@ -125,21 +123,21 @@ Each device returned in the API call should have either `RED` or `YELLOW` in its
 
 <br/>
 
-## Step 5 - Group hosts based on role
+## Step 6 - Group hosts based on role
 
 Lastly, you need to add devices to the appropriate role-based groups based on whether they are a router or switch.
 
 Every device hostname should have either `ROUTER` or `SWITCH` in it, indicated its device type.
 
-### Within the SAME for-loop you used during the previous step, add the appropriate code to add each device's hostname to hosts list of either the `routers` or `switches` groups, depending on its name.
+### Within the SAME for-loop you used during the previous step, add the appropriate code to add each device to either the `routers` or `switches` group.
 
 <br/>
 
-## Step 6 - Add groups as children of the `all` group
+## Step 7 - Add groups as children of the `all` group
 
 Now, you need to make the `red_devices`, `yellow_devices`, `routers`, and `switches` groups _children_ of the `all` group.
 
-### Using a NEW for-loop, add the `red_devices`, `yellow_devices`, `routers`, and `switches` groups names to the `groups['all']['children']` list.
+### Use a NEW for-loop to add the `red_devices`, `yellow_devices`, `routers`, and `switches` groups names to the `groups['all']['children']` list.
 
 <br/>
 
