@@ -119,11 +119,11 @@ After the `hostvars` variable, a `groups` variable has already been defined for 
 * `routers`
 * `switches`
 
-The problem is, each group has an empty `hosts` list.
+The problem is, none of the groups have any hosts.
 
 Each device returned in the API call should have either `RED` or `YELLOW` in its name, indicating its enclave.  You will use this fact to put each device into either the `red_devices` or `yellow_devices` groups.
 
-* ### Using a for-loop, add each device to either the `red_devices` or `yellow_devices` groups, depending on their names.
+* Using a **for-loop**, add each device to either the `red_devices` or `yellow_devices` groups, depending its name.
 
 <br/>
 
@@ -133,7 +133,7 @@ Lastly, you need to add devices to the appropriate role-based groups based on wh
 
 Every device hostname should have either `ROUTER` or `SWITCH` in it, which indicates its device type.
 
-* ### Within the SAME for-loop you used during the previous step, add each device to either the `routers` or `switches` group.
+* Within the **SAME for-loop** you used during the previous step, add each device to either the `routers` or `switches` group.
 
 <br/>
 
@@ -141,27 +141,25 @@ Every device hostname should have either `ROUTER` or `SWITCH` in it, which indic
 
 Now, you need to make the `red_devices`, `yellow_devices`, `routers`, and `switches` groups _children_ of the `all` group.
 
-* ### Create a NEW for-loop that sets the `red_devices`, `yellow_devices`, `routers`, and `switches` groups as children of the `all` group.
+* Create a **NEW for-loop** that sets the `red_devices`, `yellow_devices`, `routers`, and `switches` groups as children of the `all` group.
 
 <br/>
 
-## Step 7 - Combine the inventory components into one variable
+## Step 8 - Combine the inventory components into one variable
 
-On line X, there is an `inventory` variable set to None.  
+At the very bottom of the inventory script, there is an `inventory` variable set to `None`.  
 
-### Change the value of this variable to an empty dictionary.
-
-### Then, update this dictionary with the `hostvars` and `groups` dictionaries.  
+* Add the necessary code to combine the `hostvars` and `groups` variables into the `inventory` variable. 
 
 <br/>
 
-## Step 8 - Print the inventory in JSON format
+## Step 9 - Print the inventory in JSON format
 
-At the beginning of this script, the `json` module was already imported for you.  You will need to use a function within the `json` module to print out the entire inventory in a JSON formatted string.
+* Use the `json` module to print out the inventory in a JSON formatted output.
 
-### Using the `dumps()` function from the `json` module, print out the `inventory` variable in a JSON formatted string with an indentation level of `4`.
+<br/>
 
-## Step 9 - Test your script
+## Step 10 - Test your script
 
 At this point, you will need to make sure you script works as intended.  
 
@@ -199,7 +197,7 @@ At this point, you will need to make sure you script works as intended.
 
 <br/>
 
-## Step 10 - Make the script executable for all users
+## Step 11 - Make the script executable for all users
 
 In a Bash terminal, execute the command that will make the script executable by _all users_.
 
@@ -213,27 +211,29 @@ In a Bash terminal, execute the command that will make the script executable by 
 
 Within the `playbooks` directory, there is already a `group_vars` directory created for you.  
 
-Within `group_vars` directory, create a group-variables file for every group in the inventory **except the `all` group**.  These can be either JSON or YAML files.  
+* Within `group_vars` directory, create a group-variables file for every group in the inventory **except the `all` group**.  These must be YAML files. 
 
 The `all` group should already have a JSON file with variables defined.
 
-Within these files, define the following variables for each group:
+* Within these files, define the following variables for each group:
 
-* `red_devices`: 
-    - A variable called `dns_servers` set to a list containing two IP addresses: `10.10.20.98` and `10.10.20.99`.
+    * `red_devices`: 
+        - A variable called `dns_servers` set to a list containing two IP addresses: `10.10.20.98` and `10.10.20.99`.
 
-* `yellow_devices`: 
-    - A variable called `dns_servers` set to a list containing two IP addresses: `10.10.30.98` and `10.10.30.99`.
+    * `yellow_devices`: 
+        - A variable called `dns_servers` set to a list containing two IP addresses: `10.10.30.98` and `10.10.30.99`.
 
-* `routers`: 
-    - A variable called `management_interface` set to `Loopback0`.
+    * `routers`: 
+        - A variable called `management_interface` set to `Loopback0`.
 
-* `switches`:
-    - A variable called `management_interface` set to `Vlan1000`.
+    * `switches`:
+        - A variable called `management_interface` set to `Vlan1000`.
 
 <br/>
 
 ## Step 2 - Define connection variables for the `all` group
+
+The `all.json` file already has an `interfaces` variable defined, but you will have to add a few others.
 
 In the `all.json` file, define the `ansible_network_os`, `ansible_user`, and `ansible_ssh_pass` connection variables and give them the appropriate values:
 
@@ -253,18 +253,16 @@ Throughout certain templates, you will see comments like this: `{# STEP 1 - Do s
 
 ## Step 1 - Configure the hostname
 
-In `templates/base.j2`, fill in the empty variable call after `hostname` on the first line.
-
-You will need to use the appropriate Ansible special variable.  
+* On line 2 of `templates/base.j2`, there is an empty variable call after the word `hostname`.  Fill in this variable call with the appropriate Ansible special variable.
 
 <br/>
 
 ## Step 2 - Import the required child templates
 
-In `templates/base.j2`, use the comments provided to import the following child templates in the appropriate order:
+* In `templates/base.j2`, use the comments provided to import the following child templates at the appropriate locations:
 
-* dns_servers.j2
-* loopback_interfaces.j2
+    * dns_servers.j2
+    * loopback_interfaces.j2
 
 <br/>
 

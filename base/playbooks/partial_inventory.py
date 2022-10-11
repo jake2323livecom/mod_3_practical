@@ -18,15 +18,15 @@ devices = None
 devices_json = None
 
 
-# Task 2, Step 4 - Add hosts to hostvars
 hostvars = {
     '_meta': {
         'hostvars': {}
     }
 }
 
+# Task 2, Step 4 - Add hosts to hostvars
 
-# Task 2, Steps 5 and 6
+
 groups = {
     'all': {
         'children': []
@@ -45,6 +45,7 @@ groups = {
     }
 }
 
+# Task 2, Steps 5 and 6
 
 
 # Task 2, Step 7
