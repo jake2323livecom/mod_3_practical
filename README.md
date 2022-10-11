@@ -76,11 +76,11 @@ This script will execute an API call to the locally hosted Nautobot server.  The
 
 ## Step 2 - Execute the API call
 
-* On line X, use the `requests` module to execute an API call that utilizes all of the variables that you just configured.  Save the result of this API into the `devices` variable.
+* Below the constants referenced by the previous step, you should see a `devices` variable that is set to `None`.  Edit this line of code so that the `devices` variable is equal to the response of an API call that utilizes all of the constants you defined in the previous step.
 
-* Then, on line X, set the `devices_json` variable to the _JSON_ data contained within the `devices` variable.
+* Then, on the next line, you should see `devices_json` variable set to `None`.  Edit this line so that the `devices_json` variable contains the _JSON_ data contained within the `devices` variable.
 
-### If you'd like, you can test this API call in Thunderclient to make sure it works before attempting to run this script.
+### If you'd like, you can test this API call in Thunder Client to make sure it works before attempting to run this script.
 
 <br/>
 
