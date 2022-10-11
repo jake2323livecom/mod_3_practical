@@ -295,25 +295,25 @@ For this step, you will have to write the `dns_servers.j2` template to generate 
 
 ## Step 5 - Write the template for the loopback interfaces configuration
 
-For this step, you will need to finish the `loopback_interfaces.j2` template to generate the configuration for all physical interfaces.
+For this step, you will need to finish the `loopback_interfaces.j2` template to generate the configuration for all loopback interfaces.
 
-Loop through the `interfaces` variable defined in the `all.json` group_vars file.
+* Loop through the `interfaces` variable defined in the `all.json` group_vars file.
 
-Create the appropriate cisco-formatted interface configuration using the data in the `interfaces` variable.
+    Create the appropriate cisco-formatted interface configuration using the data in the `interfaces` variable.
 
-This template, once rendered, should produce output equal to the following:
+    This template, once rendered, should produce output equal to the following:
 
-```
-interface Loopback50
-  ip address 10.10.50.1 255.255.255.0
-!
-interface Loopback60
-  ip address 10.10.60.1 255.255.255.0
-!
-interface Loopback70
- ip address 10.10.70.1 255.255.255.0
-!
-```
+    ```
+    interface Loopback50
+    ip address 10.10.50.1 255.255.255.0
+    !
+    interface Loopback60
+    ip address 10.10.60.1 255.255.255.0
+    !
+    interface Loopback70
+    ip address 10.10.70.1 255.255.255.0
+    !
+    ```
 
 <br/>
 
@@ -344,6 +344,8 @@ Just for your information, when all of these templates are rendered correctly, t
     login local
     ```
 
+<br/>
+
 # Task 5 - Write the Playbook
 
 <br/>
@@ -356,46 +358,47 @@ Just for your information, when all of these templates are rendered correctly, t
 
 ## Step 2 - Create a play
 
-Within your empty playbook, create a new play with a name of `Build Device Configuration`.
+* Within your empty playbook, create a new play with a name of `Build Device Configuration`.
 
-The play should:
+    The play should:
 
-* Not gather facts
+    * Not gather facts
 
-* Target all hosts in the inventory
+    * Target all hosts in the inventory
 
-* Use a connection type of `network_cli`.  
+    * Use a connection type of `network_cli`.  
 
 <br/>
 
 ## Step 3 - Create a tasks list
 
-Give your play a list of tasks.
+* Give your play a list of tasks.
 
-This list should define the following 4 tasks in this order:
+    This list should define the following 4 tasks in this order:
 
-1. Use the `set_fact` module to create a `start_time` variable, and set the value to the current system time.  **This task should be delegated to the localhost.**
+    1. Use the `set_fact` module to create a `start_time` variable, and set the value to the current system time.  **This task should be delegated to the localhost.**
 
-2. Create a new directory to store device config files:
+    2. Create a new directory to store device config files:
 
-    * The directory name should include the value of the `start_time` variable as well as the word `configs`.   It should end up looking like this: `20210101010101-configs`.
+        * The directory name should include the value of the `start_time` variable as well as the word `configs`.   It should end up looking like this: `20210101010101-configs`.
 
-    * Use the appropriate Ansible special variable within the directory path to make sure the new directory is within the same directory as the playbook itself.
+        * Use the appropriate Ansible special variable within the directory path to make sure the new directory is within the same directory as the playbook itself.
 
-    * **This task should also be delegated to the localhost.**
+        * **This task should also be delegated to the localhost.**
 
-3. Use the `template` module to generate device configuration files and store in the directory you created:
+    3. Use the `template` module to generate device configuration files and store in the directory you created:
 
-    * The `template` module should generate the `base.j2` template.
+        * The `template` module should generate the `base.j2` template.
 
-    * Each generated file's name should contain the respective device's hostname and end with a `.cfg` file extension.  For example: `PRACTICAL-RED-ROUTER.cfg`.
+        * Each generated file's name should contain the respective device's hostname and end with a `.cfg` file extension.  For example: `PRACTICAL-RED-ROUTER.cfg`.
 
-    * Configure an option for this task that tells the playbook to continue running even if the task fails.
+        * Configure an option for this task that tells the playbook to continue running even if the task fails.
 
-4. Use the `ios_config` module to send the templated configs to the target devices:
+    4. Use the `ios_config` module to send the templated configs to the target devices:
 
-    * The `ios_config` module should generate the `base.j2` template.
+        * The `ios_config` module should generate the `base.j2` template.
 
+<br/>
 
 # Running the Playbook
 
