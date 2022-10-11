@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 
-# Step 8 - Print the inventory in JSON format
 import requests
 import urllib3
+import json
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
@@ -24,10 +24,10 @@ hostvars = {
     }
 }
 
-# Steps 4, 5, and 6
+
 groups = {
     'all': {
-
+        'children': []
     },
     'red_devices': {
         'hosts': []
@@ -43,6 +43,14 @@ groups = {
     }
 }
 
+# Step 4 and 5
+
+
+# Step 6
+
+
 # Step 7 - Combine inventory components into one variable
 inventory = None
 
+
+# Step 8 - Print JSON inventory

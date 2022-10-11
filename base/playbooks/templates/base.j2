@@ -1,15 +1,15 @@
+{# STEP 1 - fill in the blank variable call on the next line #}
 hostname {{  }}
 !
-{# import your 'dns_servers.j2' template here #}
+{# STEP X - import your 'dns_servers.j2' template here #}
 !
-{# import your 'pysical_interfaces.j2' template here #}
+{# STEP X - import your 'loopback_interfaces.j2' template here #}
 !
-{# import your 'management_interface.j2' template here #}
-!
-logging host {{  }}
+{# STEP 3 - fill in the blank variable call on the next line #}
+logging host {{ syslog_server }}
 !
 line vty 0 4
   logging synchronous
   transport input ssh
   transport output ssh
-  no login
+  login local

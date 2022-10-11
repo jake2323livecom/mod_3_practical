@@ -48,7 +48,7 @@ This script will execute an API call to the locally hosted Nautobot server.  The
 
 <br/>
 
-* Lines 10-14 will need to be completed by setting the constants to their appropriate values, excluding the `DEVICES_API_URL` constant which has already been defined for you.  You will need to set the values for these variables:
+* Lines 10-14 will need to be completed by setting the constants to their appropriate values.  You will need to set the values for these variables:
 
     * `NAUTOBOT_TOKEN`
     * `DEVICES_API_URL`
@@ -245,7 +245,7 @@ In the `all.json` file, define the `ansible_network_os`, `ansible_user`, and `an
 
 A `templates` directory has already been created for you within the `playbooks` directory.  There are a few partially completed Jinja templates that you will need to finish.
 
-Throughout certain templates, you will see comments like this: `{# SOME COMMENT HERE #}`.  Each comment will have a step number correlating to the instructions in this README.
+Throughout certain templates, you will see comments like this: `{# STEP 1 - Do step 1 here #}`.  Each comment will have a step number correlating to the instructions in this README.
 
 <br/>
 
@@ -263,7 +263,6 @@ In `templates/base.j2`, use the comments provided to import the following child 
 
 * dns_servers.j2
 * loopback_interfaces.j2
-* management_interface.j2
 
 <br/>
 
@@ -367,15 +366,15 @@ The play should:
 
 Give your play a list of tasks.
 
-This list should define the following 6 tasks in this order:
+This list should define the following 4 tasks in this order:
 
 1. Use the `set_fact` module to create a `start_time` variable, and set the value to the current system time.  **This task should be delegated to the localhost.**
 
 2. Create a new directory to store device config files:
 
-    * The directory name should be set to the `<start_time>-configs`.  For example: `20210101010101-configs`.
+    * The directory name should include the value of the `start_time` variable as well as the word `configs`.   It should end up looking like this: `20210101010101-configs`.
 
-    * Use an Ansible special variable within the directory path to make sure the new directory is within the same directory as the playbook itself.
+    * Use the appropriate Ansible special variable within the directory path to make sure the new directory is within the same directory as the playbook itself.
 
     * **This task should also be delegated to the localhost.**
 
@@ -383,9 +382,9 @@ This list should define the following 6 tasks in this order:
 
     * The `template` module should generate the `base.j2` template.
 
-    * Each destination filename should contain the respective device's hostname and end with a `.cfg` file extension.  For example: `PRACTICAL-RED-ROUTER.cfg`.
+    * Each generated file's name should contain the respective device's hostname and end with a `.cfg` file extension.  For example: `PRACTICAL-RED-ROUTER.cfg`.
 
-    * Set an option for this task that tells the playbook to continue running even if the task fails.
+    * Configure an option for this task that tells the playbook to continue running even if the task fails.
 
 4. Use the `ios_config` module to send the templated configs to the target devices:
 
@@ -396,7 +395,7 @@ This list should define the following 6 tasks in this order:
 
 * Run the playbook
 
-    * Pass in an extra variable called `syslog_server` and set the value equal to `10.10.10.10`
+    * When you run the playbook, pass in an extra variable called `syslog_server` and set the value equal to `10.10.10.10`
 
     * If your playbook ran successfully, one of the example configs in the `configs` directory should look something like this:
 
