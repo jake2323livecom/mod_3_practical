@@ -34,6 +34,14 @@ Each of the following steps will have you either complete a section or create co
 
 <br/>
 
+## Step 1 - Import the required modules
+
+* Just under the shebang, write the code that imports the following modules:
+
+    * requests
+    * urllib3
+    * json
+
 ## Step 2 - Build API call variables
 
 This script will execute an API call to the locally hosted Nautobot server.  The API call was intended to _retrieve_ the information for all devices that belong to the site `orko_mod_3_practical`.  You will need to fix the API call variables.
@@ -86,28 +94,24 @@ This script will execute an API call to the locally hosted Nautobot server.  The
 
 ## Step 4 - Add hosts to hostvars
 
-You will be responsible for adding each device returned from the API call to the hostvars portion of the inventory.
+You will be responsible for adding each device returned from the API call to the hostvars portion of the Ansible inventory.  Underneath the `devices_json` variable, there is a `hostvars` variable already defined for you.
 
-You will have to use the JSON data contained in the `devices_json` variable to build the hostvars portion of the inventory. The `hostvars` variable has already been created for you, and it includes the basic structure needed.  
-
-<br/>
-
-* Each device's name should be a key in the `hostvars['_meta']['hostvars']` dictionary, and each one of these keys should have a value of a dictionary.
+You will have to use the JSON data contained in the `devices_json` variable to build the hostvars portion of the inventory.
 
 <br/>
 
-* Within the dictionary for each respective device, set two host-level variables:
+* Using a **for-loop**, add each device returned from the API call to the hostvars portion of the inventory.  Each device should have two host-level variables defined with their appropriate values:
 
     * `ansible_host`
     * `device_type`
 
-    You will have to set the value of these variables appropriately using the data returned from the API call.
+    You will have to set the value of these variables using the data returned from the API call.
 
 <br/>
 
 ## Step 5 - Group hosts based on enclave
 
-On line X, a `groups` variable has already been defined for you with the appropriate starting structure.  The `groups` variable is a dictionary that has 5 groups defined already:
+After the `hostvars` variable, a `groups` variable has already been defined for you with the appropriate starting structure.  The `groups` variable is a dictionary that has 5 groups defined already:
 
 * `all`
 * `red_devices`
