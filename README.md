@@ -199,7 +199,7 @@ At this point, you will need to make sure you script works as intended.
 
 ## Step 11 - Make the script executable for all users
 
-In a Bash terminal, execute the command that will make the script executable by _all users_.
+* In a Bash terminal, execute the command that will make the script executable by _all users_.
 
 <br/>
 
@@ -209,11 +209,11 @@ In a Bash terminal, execute the command that will make the script executable by 
 
 ## Step 1 - Create group-level variable files
 
-Within the `playbooks` directory, there is already a `group_vars` directory created for you.  
+Within the `playbooks` directory, there is already a `group_vars` directory created for you.  Within the `group_vars` directory, there is already an `all.json` file with variables defined for the `all` group.  You will need to create the groupvars files for all other groups.
 
 * Within `group_vars` directory, create a group-variables file for every group in the inventory **except the `all` group**.  These must be YAML files. 
 
-The `all` group should already have a JSON file with variables defined.
+<br/>
 
 * Within these files, define the following variables for each group:
 
@@ -235,11 +235,11 @@ The `all` group should already have a JSON file with variables defined.
 
 The `all.json` file already has an `interfaces` variable defined, but you will have to add a few others.
 
-In the `all.json` file, define the `ansible_network_os`, `ansible_user`, and `ansible_ssh_pass` connection variables and give them the appropriate values:
+* In the `all.json` file, define the `ansible_network_os`, `ansible_user`, and `ansible_ssh_pass` connection variables and give them the appropriate values:
 
-* `ansible_network_os`: `ios`
-* `ansible_user`: `orko`
-* `ansible_ssh_pass`: `P@ssw0rd123!`
+    * `ansible_network_os`: `ios`
+    * `ansible_user`: `orko`
+    * `ansible_ssh_pass`: `P@ssw0rd123!`
 
 <br/>
 
@@ -247,7 +247,7 @@ In the `all.json` file, define the `ansible_network_os`, `ansible_user`, and `an
 
 A `templates` directory has already been created for you within the `playbooks` directory.  There are a few partially completed Jinja templates that you will need to finish.
 
-Throughout certain templates, you will see comments like this: `{# STEP 1 - Do step 1 here #}`.  Each comment will have a step number correlating to the instructions in this README.
+Throughout certain templates, you will see comments like this: `{# Task 4, Step 1 - Do step 1 here #}`.  Each comment will have a step number correlating to the instructions in this README.
 
 <br/>
 
@@ -270,20 +270,26 @@ Throughout certain templates, you will see comments like this: `{# STEP 1 - Do s
 
 At the end of the `base.j2` template, there is an empty variable call: `logging host {{ }}`. 
 
-Fill in the empty variable call with a new variable name called `syslog_server`.  You will pass this variable as an extra variable later on when you run the playbook.
+* Fill in the empty variable call with a new variable name called `syslog_server`.  You will pass this variable as an extra variable later on when you run the playbook.
+
+<br/>
+
+* Give this variable a default value of `1.1.1.1`.
+
+<br/>
 
 ## Step 4 - Write the template for the dns server configuration
 
 For this step, you will have to write the `dns_servers.j2` template to generate the dns server configuration for each device.
 
-In this template, you will need to **loop** through the `dns_servers` variable to produce the Cisco-formatted DNS configuration.
+* In this template, **loop** through the `dns_servers` variable to produce the Cisco-formatted DNS configuration.
 
-The Jinja template should produce something like the following:
+    The Jinja template should produce something like the following:
 
-```
-ip name-server <ip_address>
-ip name-server <ip_address>
-```
+    ```
+    ip name-server <ip_address>
+    ip name-server <ip_address>
+    ```
 
 <br/>
 
