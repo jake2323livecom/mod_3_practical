@@ -123,7 +123,7 @@ The problem is, each group has an empty `hosts` list.
 
 Each device returned in the API call should have either `RED` or `YELLOW` in its name, indicating its enclave.  You will use this fact to put each device into either the `red_devices` or `yellow_devices` groups.
 
-* ### Using a for-loop, loop through each device and add its hostname to the hosts list of either the `red_devices` or `yellow_devices` groups, depending on its name.
+* ### Using a for-loop, add each device to either the `red_devices` or `yellow_devices` groups, depending on their names.
 
 <br/>
 
@@ -131,9 +131,9 @@ Each device returned in the API call should have either `RED` or `YELLOW` in its
 
 Lastly, you need to add devices to the appropriate role-based groups based on whether they are a router or switch.
 
-Every device hostname should have either `ROUTER` or `SWITCH` in it, indicated its device type.
+Every device hostname should have either `ROUTER` or `SWITCH` in it, which indicates its device type.
 
-### Within the SAME for-loop you used during the previous step, add the appropriate code to add each device to either the `routers` or `switches` group.
+* ### Within the SAME for-loop you used during the previous step, add each device to either the `routers` or `switches` group.
 
 <br/>
 
