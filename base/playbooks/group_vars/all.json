@@ -1,0 +1,19 @@
+{
+    "interfaces": [
+        {
+            "name": "Loopback50",
+            "address": "10.10.50.1",
+            "mask": "255.255.255.0"
+        },
+        {
+            "name": "Loopback60",
+            "address": "10.10.60.1",
+            "mask": "255.255.255.0"
+        },
+        {
+            "name": "Loopback70",
+            "address": "10.10.70.1",
+            "mask": "255.255.255.0"
+        }
+    ]
+}

@@ -1,0 +1,15 @@
+{# Task 4, Step 1 - fill in the blank variable call on the next line #}
+hostname {{  }}
+!
+{# Task 4, Step 2 - import your 'dns_servers.j2' template here #}
+!
+{# Task 4, Step 2 - import your 'loopback_interfaces.j2' template here #}
+!
+{# Task 4, Step 3 - fill in the blank variable call on the next line #}
+logging host {{  }}
+!
+line vty 0 4
+  logging synchronous
+  transport input ssh
+  transport output ssh
+  login local
