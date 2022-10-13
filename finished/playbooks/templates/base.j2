@@ -1,12 +1,14 @@
 {# Task 4, Step 1 - fill in the blank variable call on the next line #}
-hostname {{  }}
+hostname {{ inventory_hostname }}
 !
 {# Task 4, Step 2 - import your 'dns_servers.j2' template here #}
+{% include 'dns_servers.j2' %}
 !
 {# Task 4, Step 2 - import your 'loopback_interfaces.j2' template here #}
+{% include 'loopback_interfaces.j2' %}
 !
 {# Task 4, Step 3 - fill in the blank variable call on the next line #}
-logging host {{ syslog_server }}
+logging host {{ syslog_server | default('1.1.1.1') }}
 !
 line vty 0 4
   logging synchronous

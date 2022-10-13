@@ -1,0 +1,28 @@
+---
+- name: Build Device Configuration
+  gather_facts: false
+  hosts: all
+  connection: network_cli
+
+  tasks:
+    - name: set variable
+      set_fact:
+        start_time: "{{ lookup('pipe', 'date +%Y%m%d%H%M%S') }}"
+      delegate_to: localhost
+
+    - name: create directory
+      file:
+        path: "{{ playbook_dir }}/{{ start_time }}-configs/"
+        state: directory
+      delegate_to: localhost
+
+    - name: store configs
+      template:
+        src: base.j2
+        dest: "{{ playbook_dir }}/{{ start_time }}-configs/{{ inventory_hostname }}.cfg"
+      ignore_errors: true
+
+    - name: send configs
+      ios_config:
+        src: base.j2
+        

@@ -14,7 +14,10 @@
 
 ## Step 1 - Set up Remote-SSH
 
-* Use Git Bash to send your windows laptops SSH public key to your lab VM.  
+* Use Git Bash to send your windows laptops SSH public key to your lab VM. 
+
+<br/>
+
 * Use the Remote-SSH extension in VS Code to open a session to your lab VM.
 
 <br/>
@@ -22,15 +25,18 @@
 ## Step 2 - Clone the practical exam repository
 
 * On your lab VM, generate an SSH key-pair.
+
 * Add the new public key to your profile in Gitlab.
+
 * Clone the exam repo to your lab VM using SSH and go into the top-level directory of the repo.
+
 * Create a new branch from the _development_ branch, and name it `StudX-Practical`, where `X` is your personal student number.
 
 <br/>
 
 # Task 2 - Finish the `partial_inventory.py` dynamic inventory script
 
-Each of the following steps will have you either complete a section or create code from scratch in the `partial_inventory.py` in the `ansible` directory.  Each of the following steps will correlate to an appropriately labeled comment within the script so that you will know what the directions are referencing.
+All of the steps within Task 2 will have you either complete a section or create code from scratch in the `partial_inventory.py` within the `playbooks` directory.  Each of the following steps will correlate to an appropriately labeled comment within the script so that you will know what the directions are referencing.
 
 <br/>
 
@@ -41,6 +47,8 @@ Each of the following steps will have you either complete a section or create co
     * requests
     * urllib3
     * json
+
+<br/>
 
 ## Step 2 - Build API call variables
 
@@ -82,9 +90,11 @@ This script will execute an API call to the locally hosted Nautobot server.  The
 
 * Define the `PARAMETERS` variable in such a way that only devices from the `orko_mod_3_practical` site in Nautobot are returned via the API call.
 
+<br/>
+
 ## Step 3 - Execute the API call
 
-* Below the constants referenced by the previous step, you should see a `devices` variable that is set to `None`.  Edit this line of code so that the `devices` variable is equal to the response of an API call that utilizes all of the constants you defined in the previous step.
+* Below the constants referenced by the previous step, you should see a `devices` variable that is set to `None`.  Edit this line of code so that the `devices` variable is equal to the response of an API call that utilizes all of the constants you defined in the previous step.  You will have to make sure that the API call ignores self-signed certificates.
 
 * Then, on the next line, you should see `devices_json` variable set to `None`.  Edit this line so that the `devices_json` variable contains the _JSON_ data contained within the `devices` variable.
 
@@ -106,6 +116,10 @@ You will have to use the JSON data contained in the `devices_json` variable to b
     * `device_type`
 
     You will have to set the value of these variables using the data returned from the API call.
+
+    Each device returned from the API call should have a primary IPv4 address.  This is what the `ansible_host` should be set to.
+
+
 
 <br/>
 
@@ -167,7 +181,34 @@ At this point, you will need to make sure you script works as intended.
 
 ```json
 {
-    "all": {},
+    "_meta": {
+        "hostvars": {
+            "PRACTICAL-RED-ROUTER": {
+                "ansible_host": "10.59.99.1",
+                "device_type": "router"
+            },
+            "PRACTICAL-RED-SWITCH": {
+                "ansible_host": "10.59.99.2",
+                "device_type": "switch"
+            },
+            "PRACTICAL-YELLOW-ROUTER": {
+                "ansible_host": "10.59.99.3",
+                "device_type": "router"
+            },
+            "PRACTICAL-YELLOW-SWITCH": {
+                "ansible_host": "10.59.99.4",
+                "device_type": "switch"
+            }
+        }
+    },
+    "all": {
+        "children": [
+            "red_devices",
+            "yellow_devices",
+            "routers",
+            "switches"
+        ]
+    },
     "red_devices": {
         "hosts": [
             "PRACTICAL-RED-ROUTER",
@@ -233,7 +274,7 @@ Within the `playbooks` directory, there is already a `group_vars` directory crea
 
 ## Step 2 - Define connection variables for the `all` group
 
-The `all.json` file already has an `interfaces` variable defined, but you will have to add a few others.
+The `all.json` file already has an `interfaces` variable defined, but you will have to add a few other variables.
 
 * In the `all.json` file, define the `ansible_network_os`, `ansible_user`, and `ansible_ssh_pass` connection variables and give them the appropriate values:
 
@@ -305,13 +346,13 @@ For this step, you will need to finish the `loopback_interfaces.j2` template to 
 
     ```
     interface Loopback50
-    ip address 10.10.50.1 255.255.255.0
+      ip address 10.10.50.1 255.255.255.0
     !
     interface Loopback60
-    ip address 10.10.60.1 255.255.255.0
+      ip address 10.10.60.1 255.255.255.0
     !
     interface Loopback70
-    ip address 10.10.70.1 255.255.255.0
+      ip address 10.10.70.1 255.255.255.0
     !
     ```
 
@@ -319,30 +360,30 @@ For this step, you will need to finish the `loopback_interfaces.j2` template to 
 
 Just for your information, when all of these templates are rendered correctly, the resulting file would look like this:
 
-    ```
-    hostname PRACTICAL-RED-ROUTER
-    !
-    ip name-server 10.10.20.98
-    ip name-server 10.10.20.99
-    !
-    interface Loopback50
-    ip address 10.10.50.1 255.255.255.0
-    !
-    interface Loopback60
-    ip address 10.10.60.1 255.255.255.0
-    !
-    interface Loopback70
-    ip address 10.10.70.1 255.255.255.0
-    !
-    !
-    logging host 1.1.1.1
-    !
-    line vty 0 4
-    logging synchronous
-    transport input ssh
-    transport output ssh
-    login local
-    ```
+```
+hostname PRACTICAL-RED-ROUTER
+!
+ip name-server 10.10.20.98
+ip name-server 10.10.20.99
+!
+interface Loopback50
+  ip address 10.10.50.1 255.255.255.0
+!
+interface Loopback60
+  ip address 10.10.60.1 255.255.255.0
+!
+interface Loopback70
+  ip address 10.10.70.1 255.255.255.0
+!
+!
+logging host 1.1.1.1
+!
+line vty 0 4
+logging synchronous
+transport input ssh
+transport output ssh
+login local
+```
 
 <br/>
 
@@ -389,6 +430,8 @@ Just for your information, when all of these templates are rendered correctly, t
     3. Use the `template` module to generate device configuration files and store in the directory you created:
 
         * The `template` module should generate the `base.j2` template.
+
+        * These generated config files should be stored in the `configs` directory you created in the previous playbook task.
 
         * Each generated file's name should contain the respective device's hostname and end with a `.cfg` file extension.  For example: `PRACTICAL-RED-ROUTER.cfg`.
 
